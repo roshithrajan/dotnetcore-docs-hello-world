@@ -1,6 +1,7 @@
 using dotnetcoresample.Components;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +10,7 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
 // Entra ID (Azure AD) authentication
-builder.Services.AddAuthentication(Microsoft.Identity.Web.Constants.AzureADOpenID)
+builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
     .AddMicrosoftIdentityWebApp(builder.Configuration.GetSection("AzureAd"));
 
 builder.Services.AddAuthorization(options =>
